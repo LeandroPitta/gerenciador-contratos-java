@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+html,
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+    background-color: #fff;
+}
+
+@font-face {
+    font-family: 'Futura LT BT';
+    src: url(./assets/fonts/futura-light.ttf);
+}
+
+@font-face {
+    font-family: 'Futura BK BT';
+    src: url(./assets/fonts/futura-book.ttf);
+}
+
+@font-face {
+    font-family: 'Futura MD BT';
+    src: url(./assets/fonts/futura-medium.ttf);
+}
+
+@font-face {
+    font-family: 'Futura BD BT';
+    src: url(./assets/fonts/futura-bold.ttf);
+}
+
+@font-face {
+    font-family: 'Futura HV BT';
+    src: url(./assets/fonts/futura-heavy.ttf);
+}

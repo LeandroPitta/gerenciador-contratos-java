@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Quantidade Total de Contratos</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>{{ totalContratos }} contratos</p>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Média de Valor dos Contratos</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>{{this.FormatarMoedaBrl.formatarParaValorMonetario(this.mediaContratos)}}</p>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Valor Total de Contratos</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>{{this.FormatarMoedaBrl.formatarParaValorMonetario(this.valorTotal)}}</p>
+  </mat-card-content>
+</mat-card>

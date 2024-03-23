@@ -1,0 +1,38 @@
+form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+*{
+  font-family: "Futura Md Bt", "Arial", sans-serif;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+#contrato {
+  width: 14rem;
+}
+
+#nome {
+  width: 30rem;
+}
+
+#valor {
+  width: 14rem;
+  margin-right: 2rem;
+}
+
+#data {
+  width: 14rem;
+}
+
+button[type="submit"] {
+  height: 2.8rem;
+  width: 10rem;
+  background-color: #f39200;
+  color: #ffffff;  
+  font-weight: bold;
+}

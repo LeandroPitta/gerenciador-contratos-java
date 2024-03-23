@@ -1,0 +1,7 @@
+<mat-form-field id="pesquisa">
+  <mat-label>Digite o número do contrato</mat-label>
+  <input matInput #message [(ngModel)]="numeroContrato" maxlength="9" appNumeros9>
+  <mat-hint align="start">O número do contrato deve ter 9 caracteres</mat-hint>
+  <mat-hint align="end">{{message.value.length}} / 9</mat-hint>
+</mat-form-field>
+<button mat-raised-button (click)="pesquisarContrato()">Pesquisar</button>

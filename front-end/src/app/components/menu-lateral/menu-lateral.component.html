@@ -1,0 +1,22 @@
+<mat-button-toggle-group>
+    <mat-button-toggle #btnInicio [routerLink]="['/inicio']" routerLinkActive="active">
+        <mat-icon aria-hidden="false" aria-label="Início" fontIcon="home"></mat-icon>
+        <p>Início</p>
+    </mat-button-toggle>
+    <mat-button-toggle [routerLink]="['/cadastrar']" routerLinkActive="active">
+        <mat-icon aria-hidden="false" aria-label="Cadastrar" fontIcon="assignment"></mat-icon>
+        <p>Cadastrar</p>
+    </mat-button-toggle>
+    <mat-button-toggle [routerLink]="['/pesquisar']" routerLinkActive="active">
+        <mat-icon aria-hidden="false" aria-label="Pesquisar" fontIcon="search"></mat-icon>
+        <p>Pesquisar</p>
+    </mat-button-toggle>
+    <mat-button-toggle [routerLink]="['/analitico']" routerLinkActive="active">
+        <mat-icon aria-hidden="false" aria-label="Analitico" fontIcon="table_chart"></mat-icon>
+        <p>Analítico</p>
+    </mat-button-toggle>
+</mat-button-toggle-group>
+
+<div id="versao">
+    <P>Versão 1.1</P>
+</div>

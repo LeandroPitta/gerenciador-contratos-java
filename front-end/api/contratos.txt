@@ -1,0 +1,197 @@
+[
+    {
+            "CONTRATO": 111172945,
+  "NOME": "Cassia Luiza Montini",
+  "VALOR": 15500.2,
+  "DATA_DO_CONTRATO": "2023-06-27"
+}
+,
+    {
+      "CONTRATO": 111172946,
+      "NOME": "Roberto Carlos",
+      "VALOR": 12590,
+      "DATA_DO_CONTRATO": "2023-05-17"
+    }
+,
+    {
+      "CONTRATO": 111172947,
+      "NOME": "Silvana Silva",
+      "VALOR": 17230.3,
+      "DATA_DO_CONTRATO": "2023-06-25"
+    }
+,
+    {
+              "CONTRATO": 111172948,
+  "NOME": "Cristiano Roberto de Castro",
+  "VALOR": 8590.15,
+  "DATA_DO_CONTRATO": "2023-07-11"
+}
+,
+    {
+        "CONTRATO": 111172949,
+  "NOME": "Guilherme Souza",
+  "VALOR": 8902,
+  "DATA_DO_CONTRATO": "2023-07-11"
+}
+,
+    {
+      "CONTRATO": 111172950,
+      "NOME": "Joana Barbosa",
+      "VALOR": 5530,
+      "DATA_DO_CONTRATO": "2023-06-25"
+    }
+,
+    {
+      "CONTRATO": 111172951,
+      "NOME": "Carina Gomes",
+      "VALOR": 12000,
+      "DATA_DO_CONTRATO": "2023-05-18"
+    }
+,
+    {
+      "CONTRATO": 111172952,
+      "NOME": "Livia Barbosa",
+      "VALOR": 12000,
+      "DATA_DO_CONTRATO": "2023-07-14"
+    }
+,
+    {
+        "CONTRATO": 111172953,
+  "NOME": "Julia Silva",
+  "VALOR": 11300,
+  "DATA_DO_CONTRATO": "2023-06-22"
+}
+,
+    {
+      "CONTRATO": 111172954,
+      "NOME": "Andre Santos",
+      "VALOR": 8790,
+      "DATA_DO_CONTRATO": "2023-07-11"
+    }
+,
+    {
+      "CONTRATO": 111172955,
+      "NOME": "Roberto Alves",
+      "VALOR": 1200,
+      "DATA_DO_CONTRATO": "2023-07-14"
+    }
+,
+    {
+      "CONTRATO": 111172956,
+      "NOME": "Leonardo Souza",
+      "VALOR": 8900,
+      "DATA_DO_CONTRATO": "2023-05-18"
+    }
+,
+    {
+      "CONTRATO": 111172957,
+      "NOME": "Carlos Alberto",
+      "VALOR": 3500,
+      "DATA_DO_CONTRATO": "2023-06-22"
+    }
+,
+    {
+      "CONTRATO": 111172958,
+      "NOME": "Natalia Lima",
+      "VALOR": 8100,
+      "DATA_DO_CONTRATO": "2023-05-18"
+    }
+,
+    {
+      "CONTRATO": 111172959,
+      "NOME": "Wilian Batista",
+      "VALOR": 3000,
+      "DATA_DO_CONTRATO": "2023-07-14"
+    }
+ ,
+    {
+      "CONTRATO": 111172970,
+      "NOME": "Caio Souza",
+      "VALOR": 7850,
+      "DATA_DO_CONTRATO": "2023-05-18"
+    }
+,
+    {
+      "CONTRATO": 111172971,
+      "NOME": "Nicolas Costa",
+      "VALOR": 7490.1,
+      "DATA_DO_CONTRATO": "2023-05-18"
+    }
+,
+    {
+      "CONTRATO": 111172972,
+      "NOME": "Carlos Augusto",
+      "VALOR": 1500,
+      "DATA_DO_CONTRATO": "2023-06-22"
+    }
+,
+    {
+      "CONTRATO": 111172973,
+      "NOME": "Oscar Cintra",
+      "VALOR": 8510,
+      "DATA_DO_CONTRATO": "2023-07-11"
+    }
+,
+    {
+      "CONTRATO": 111172974,
+      "NOME": "Roberto Carlos",
+      "VALOR": 15000,
+      "DATA_DO_CONTRATO": "2023-05-17"
+    }
+,
+    {
+      "CONTRATO": 111172975,
+      "NOME": "Osmar Dias",
+      "VALOR": 22000,
+      "DATA_DO_CONTRATO": "2023-07-14"
+    }
+,
+    {
+      "CONTRATO": 111172976,
+      "NOME": "Larissa Fantin",
+      "VALOR": 9000,
+      "DATA_DO_CONTRATO": "2023-07-11"
+    }
+,
+    {
+      "CONTRATO": 111172977,
+      "NOME": "Pedro Roberto Santos",
+      "VALOR": 11800,
+      "DATA_DO_CONTRATO": "2023-07-05"
+    }
+,
+    {
+        "CONTRATO": 111172978,
+  "NOME": "Luiz Roberto",
+  "VALOR": 7400,
+  "DATA_DO_CONTRATO": "2023-05-18"
+}
+,
+    {
+        "CONTRATO": 111172979,
+  "NOME": "Carla Rosa",
+  "VALOR": 1950,
+  "DATA_DO_CONTRATO": "2023-05-18"
+}
+,
+    {
+        "CONTRATO": 111172982,
+  "NOME": "Cristiano Castro Alves",
+  "VALOR": 590,
+  "DATA_DO_CONTRATO": "2023-07-12"
+}
+,
+    {
+      "CONTRATO": 111172980,
+      "NOME": "Cassio Rosa",
+      "VALOR": 15000.15,
+      "DATA_DO_CONTRATO": "2023-07-11"
+    }
+,
+    {
+      "CONTRATO": 111172981,
+      "NOME": "Sonia Lima",
+      "VALOR": 1580.8,
+      "DATA_DO_CONTRATO": "2023-07-14"
+    }
+  ]
