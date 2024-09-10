@@ -1,0 +1,43 @@
+<mat-form-field>
+  <mat-label>Pesquisar</mat-label>
+  <input matInput (keyup)="applyFilter($event)" #input>
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="CONTRATO">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Contrato </th>
+      <td mat-cell *matCellDef="let row"> {{ row.CONTRATO }} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="NOME">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
+      <td mat-cell *matCellDef="let row"> {{ row.NOME }} </td>
+    </ng-container>
+
+    <!-- Value Column -->
+    <ng-container matColumnDef="VALOR">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor </th>
+      <td mat-cell *matCellDef="let row"> {{ this.FormatarMoedaBrl.formatarParaValorMonetario(row.VALOR) }} </td>
+    </ng-container>
+
+    <!-- Date Column -->
+    <ng-container matColumnDef="DATA_DO_CONTRATO">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Data do Contrato </th>
+      <td mat-cell *matCellDef="let row"> {{ row.DATA_DO_CONTRATO | date:'dd/MM/yyyy' }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">"{{ input.value }}" não encontrado</td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+</div>

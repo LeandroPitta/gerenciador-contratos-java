@@ -1,0 +1,23 @@
+:host {
+  width: 90%;
+  height: 90%;
+}
+
+* {
+  font-family: "Futura MD BT", "Arial", sans-serif !important;
+  font-size: 1rem !important;
+}
+
+th {
+  font-weight: bold !important;
+  background-color: #f2f2f2 !important;
+}
+
+tr:hover {
+  background-color: #f5f5f5 !important;
+  /* Cor de fundo ao passar o mouse */
+}
+
+mat-paginator {
+  margin-bottom: 8rem;
+}

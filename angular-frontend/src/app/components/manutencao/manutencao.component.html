@@ -1,0 +1,31 @@
+<form (ngSubmit)="atualizarContrato()">
+  <p>
+
+    <mat-form-field id="contrato">
+      <mat-label>Contrato</mat-label>
+      <input matInput required name="contrato" [value]="contratoEncontrado?.CONTRATO" [disabled]="true">
+    </mat-form-field>
+
+    <mat-form-field id="nome">
+      <mat-label>Nome</mat-label>
+      <input matInput required [(ngModel)]="nome" name="nome" [value]="contratoEncontrado?.NOME" minlength="3" appApenasLetras>
+    </mat-form-field>
+
+    <mat-form-field id="valor">
+      <mat-label>Valor do Contrato</mat-label>
+      <input #inputvalor matInput type="text" [(ngModel)]="valorContrato" name="valorContrato"
+        (input)="FormatarMoedaBrl.formatarValor(inputvalor)">
+    </mat-form-field>
+
+    <mat-form-field id="data" (click)="picker.open()">
+      <mat-label>Data do contrato</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="dataContrato" name="dataContrato" (focus)="picker.open()"
+        readonly [max]= "maxDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    
+  </p>
+  <button mat-raised-button type="submit">Atualizar</button>
+  <button mat-raised-button type="button" (click)="this.router.navigate(['/pesquisar'])">Voltar</button>
+</form>
