@@ -3,6 +3,8 @@ package br.com.leandropitta.gerenciador_contratos_java.controller;
 import br.com.leandropitta.gerenciador_contratos_java.dto.request.ContratoRequestDto;
 import br.com.leandropitta.gerenciador_contratos_java.dto.response.ContratoResponseDto;
 import br.com.leandropitta.gerenciador_contratos_java.dto.response.ContratoResponsePageDto;
+import br.com.leandropitta.gerenciador_contratos_java.service.ContratosService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +15,10 @@ import java.util.Collections;
 
 @RestController
 @RequestMapping("/contratos")
+@AllArgsConstructor
 public class ContratosController {
+
+    private final ContratosService contratosService;
 
     @GetMapping
     public ContratoResponsePageDto consultarContratos() {
@@ -34,12 +39,7 @@ public class ContratosController {
 
     @GetMapping("/{id}")
     public ContratoResponseDto consultarContrato(@PathVariable String id) {
-        return ContratoResponseDto.builder()
-                .contrato("111100003")
-                .nome("Leandro Pitta")
-                .valor(BigDecimal.valueOf(1000.00))
-                .dataContrato(LocalDate.parse("2021-10-01"))
-                .build();
+        return contratosService.consultarContrato(id);
     }
 
     @GetMapping("/gerarNumeroContrato")
