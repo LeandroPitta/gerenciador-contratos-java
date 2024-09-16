@@ -3,6 +3,7 @@ package br.com.leandropitta.gerenciador_contratos_java.controller;
 import br.com.leandropitta.gerenciador_contratos_java.dto.request.ContratoRequestDto;
 import br.com.leandropitta.gerenciador_contratos_java.dto.response.ContratoResponseDto;
 import br.com.leandropitta.gerenciador_contratos_java.dto.response.ContratoResponsePageDto;
+import br.com.leandropitta.gerenciador_contratos_java.dto.response.NumeroContratoResponseDto;
 import br.com.leandropitta.gerenciador_contratos_java.service.ContratosService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,20 +22,10 @@ public class ContratosController {
     private final ContratosService contratosService;
 
     @GetMapping
-    public ContratoResponsePageDto consultarContratos() {
-        return ContratoResponsePageDto.builder()
-                .total(1)
-                .totalPages(1)
-                .page(0)
-                .size(10)
-                .content(Collections.singletonList(
-                        ContratoResponseDto.builder()
-                                .contrato("111100003")
-                                .nome("Leandro Pitta")
-                                .valor(BigDecimal.valueOf(1000.00))
-                                .dataContrato(LocalDate.parse("2021-10-01"))
-                                .build()))
-                .build();
+    public ContratoResponsePageDto consultarContratos(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        return contratosService.consultarContratos(page, size);
     }
 
     @GetMapping("/{id}")
@@ -43,8 +34,8 @@ public class ContratosController {
     }
 
     @GetMapping("/gerarNumeroContrato")
-    public String gerarNumeroContrato() {
-        return "111100003";
+    public NumeroContratoResponseDto gerarNumeroContrato() {
+        return contratosService.gerarNumeroContrato();
     }
 
     @PostMapping
