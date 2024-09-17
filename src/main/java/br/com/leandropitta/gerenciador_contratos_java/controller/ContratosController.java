@@ -39,8 +39,9 @@ public class ContratosController {
     }
 
     @PostMapping
-    public ResponseEntity<?> cadastrarContrato(@RequestBody ContratoRequestDto contratoRequestDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<ContratoResponseDto> cadastrarContrato(@RequestBody ContratoRequestDto contratoRequestDto) {
+        ContratoResponseDto responseDto = contratosService.cadastrarContrato(contratoRequestDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
     }
 
     @PutMapping

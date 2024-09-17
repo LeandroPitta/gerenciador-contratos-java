@@ -1,5 +1,6 @@
 package br.com.leandropitta.gerenciador_contratos_java.service;
 
+import br.com.leandropitta.gerenciador_contratos_java.dto.request.ContratoRequestDto;
 import br.com.leandropitta.gerenciador_contratos_java.dto.response.ContratoResponseDto;
 import br.com.leandropitta.gerenciador_contratos_java.dto.response.ContratoResponsePageDto;
 import br.com.leandropitta.gerenciador_contratos_java.dto.response.NumeroContratoResponseDto;
@@ -47,5 +48,11 @@ public class ContratosService {
         }
         int nextNumber = Integer.parseInt(maxContrato.substring(4)) + 1;
         return new NumeroContratoResponseDto("1111" + String.format("%05d", nextNumber));
+    }
+
+    public ContratoResponseDto cadastrarContrato(ContratoRequestDto contratoRequestDto) {
+        Contrato contrato = modelMapper.map(contratoRequestDto, Contrato.class);
+        contrato = contratoRepository.save(contrato);
+        return modelMapper.map(contrato, ContratoResponseDto.class);
     }
 }
