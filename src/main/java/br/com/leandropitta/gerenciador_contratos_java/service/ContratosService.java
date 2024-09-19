@@ -52,6 +52,8 @@ public class ContratosService {
 
     public ContratoResponseDto cadastrarContrato(ContratoRequestDto contratoRequestDto) {
         Contrato contrato = modelMapper.map(contratoRequestDto, Contrato.class);
+        NumeroContratoResponseDto numeroContratoResponseDto = gerarNumeroContrato();
+        contrato.setContrato(numeroContratoResponseDto.getNumeroContrato());
         contrato = contratoRepository.save(contrato);
         return modelMapper.map(contrato, ContratoResponseDto.class);
     }

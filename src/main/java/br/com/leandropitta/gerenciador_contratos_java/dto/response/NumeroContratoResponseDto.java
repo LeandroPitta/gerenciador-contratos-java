@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class NumeroContratoResponseDto {
-    private String numerocontrato;
+    private String numeroContrato;
 }
