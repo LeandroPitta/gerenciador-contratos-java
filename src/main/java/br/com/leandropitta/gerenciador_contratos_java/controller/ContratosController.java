@@ -1,6 +1,7 @@
 package br.com.leandropitta.gerenciador_contratos_java.controller;
 
-import br.com.leandropitta.gerenciador_contratos_java.dto.request.ContratoRequestDto;
+import br.com.leandropitta.gerenciador_contratos_java.dto.request.AtualizaContratoRequestDto;
+import br.com.leandropitta.gerenciador_contratos_java.dto.request.CadastraContratoRequestDto;
 import br.com.leandropitta.gerenciador_contratos_java.dto.response.ContratoResponseDto;
 import br.com.leandropitta.gerenciador_contratos_java.dto.response.ContratoResponsePageDto;
 import br.com.leandropitta.gerenciador_contratos_java.dto.response.NumeroContratoResponseDto;
@@ -9,10 +10,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.Collections;
 
 @RestController
 @RequestMapping("/contratos")
@@ -39,13 +36,16 @@ public class ContratosController {
     }
 
     @PostMapping
-    public ResponseEntity<ContratoResponseDto> cadastrarContrato(@RequestBody ContratoRequestDto contratoRequestDto) {
-        ContratoResponseDto responseDto = contratosService.cadastrarContrato(contratoRequestDto);
+    public ResponseEntity<ContratoResponseDto> cadastrarContrato(@RequestBody CadastraContratoRequestDto cadastraContratoRequestDto) {
+        ContratoResponseDto responseDto = contratosService.cadastrarContrato(cadastraContratoRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
     }
 
-    @PutMapping
-    public ResponseEntity<?> atualizarContrato(@RequestBody ContratoRequestDto contratoRequestDto) {
-        return ResponseEntity.status(HttpStatus.OK).build();
+    @PutMapping("/{numeroContrato}")
+    public ResponseEntity<ContratoResponseDto> atualizarContrato(
+            @PathVariable String numeroContrato,
+            @RequestBody AtualizaContratoRequestDto atualizaContratoRequestDto) {
+        ContratoResponseDto responseDto = contratosService.atualizarContrato(numeroContrato, atualizaContratoRequestDto);
+        return ResponseEntity.status(HttpStatus.OK).body(responseDto);
     }
 }

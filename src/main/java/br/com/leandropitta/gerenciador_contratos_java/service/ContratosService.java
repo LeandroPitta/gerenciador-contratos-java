@@ -1,6 +1,7 @@
 package br.com.leandropitta.gerenciador_contratos_java.service;
 
-import br.com.leandropitta.gerenciador_contratos_java.dto.request.ContratoRequestDto;
+import br.com.leandropitta.gerenciador_contratos_java.dto.request.AtualizaContratoRequestDto;
+import br.com.leandropitta.gerenciador_contratos_java.dto.request.CadastraContratoRequestDto;
 import br.com.leandropitta.gerenciador_contratos_java.dto.response.ContratoResponseDto;
 import br.com.leandropitta.gerenciador_contratos_java.dto.response.ContratoResponsePageDto;
 import br.com.leandropitta.gerenciador_contratos_java.dto.response.NumeroContratoResponseDto;
@@ -50,11 +51,29 @@ public class ContratosService {
         return new NumeroContratoResponseDto("1111" + String.format("%05d", nextNumber));
     }
 
-    public ContratoResponseDto cadastrarContrato(ContratoRequestDto contratoRequestDto) {
-        Contrato contrato = modelMapper.map(contratoRequestDto, Contrato.class);
+    public ContratoResponseDto cadastrarContrato(CadastraContratoRequestDto cadastraContratoRequestDto) {
+        Contrato contrato = modelMapper.map(cadastraContratoRequestDto, Contrato.class);
         NumeroContratoResponseDto numeroContratoResponseDto = gerarNumeroContrato();
         contrato.setContrato(numeroContratoResponseDto.getNumeroContrato());
         contrato = contratoRepository.save(contrato);
         return modelMapper.map(contrato, ContratoResponseDto.class);
+    }
+
+    public ContratoResponseDto atualizarContrato(String numeroContrato, AtualizaContratoRequestDto atualizaContratoRequestDto) {
+        Contrato contratoExistente = contratoRepository.findById(numeroContrato)
+                .orElseThrow(() -> new ValidacaoException("Contrato não encontrado"));
+
+        if (atualizaContratoRequestDto.getNome() != null) {
+            contratoExistente.setNome(atualizaContratoRequestDto.getNome());
+        }
+        if (atualizaContratoRequestDto.getValor() != null) {
+            contratoExistente.setValor(atualizaContratoRequestDto.getValor());
+        }
+        if (atualizaContratoRequestDto.getDataContrato() != null) {
+            contratoExistente.setDataContrato(atualizaContratoRequestDto.getDataContrato());
+        }
+
+        contratoExistente = contratoRepository.save(contratoExistente);
+        return modelMapper.map(contratoExistente, ContratoResponseDto.class);
     }
 }
