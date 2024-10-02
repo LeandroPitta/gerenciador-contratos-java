@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { FormatarMoedaBrl } from '../../services/formatar-moeda-brl.service';
-import { ValidacaoService } from '../../services/validacao.service';
-import { FormatarDataApiService } from 'src/app/services/formatar-data-api.service';
+import { FormatarMoedaBrl } from '../../utils/formatar-moeda-brl.service';
+import { ValidacaoService } from '../../utils/validacao.service';
+import { FormatarDataApiService } from 'src/app/utils/formatar-data-api.service';
 
 @Component({
   selector: 'app-manutencao',

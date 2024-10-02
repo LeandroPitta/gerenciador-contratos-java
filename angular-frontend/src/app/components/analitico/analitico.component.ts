@@ -1,25 +1,27 @@
-import { Component, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
-import { FormatarMoedaBrl } from '../../services/formatar-moeda-brl.service';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { ContratoService } from '../../services/contrato.service';
+import { FormatarMoedaBrl } from '../../utils/formatar-moeda-brl.service';
 
 @Component({
   selector: 'app-analitico',
   templateUrl: './analitico.component.html',
   styleUrls: ['./analitico.component.css']
 })
-export class AnaliticoComponent {
-  displayedColumns: string[] = ['CONTRATO', 'NOME', 'VALOR', 'DATA_DO_CONTRATO'];
+export class AnaliticoComponent implements OnInit {
+  displayedColumns: string[] = ['contrato', 'nome', 'valor', 'dataContrato'];
   dataSource!: MatTableDataSource<any>;
-
+  totalItems = 0;
+  pageSize = 5;
+  currentPage = 0;
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
-    private http: HttpClient,
+    private contratoService: ContratoService,
     public FormatarMoedaBrl: FormatarMoedaBrl
   ) {}
 
@@ -28,12 +30,19 @@ export class AnaliticoComponent {
   }
 
   fetchData() {
-    const apiUrl = 'http://localhost:8080/api/tabela.asp';
-    this.http.get<any[]>(apiUrl).subscribe(data => {
-      this.dataSource = new MatTableDataSource(data);
+    this.contratoService.getContratos(this.currentPage, this.pageSize).subscribe(response => {
+      this.dataSource = new MatTableDataSource(response.content);
       this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
+      this.totalItems = response.total;
+    }, error => {
+      console.error('Error fetching data:', error);
     });
+  }
+
+  onPageChange(event: PageEvent) {
+    this.pageSize = event.pageSize;
+    this.currentPage = event.pageIndex;
+    this.fetchData();
   }
 
   applyFilter(event: Event) {

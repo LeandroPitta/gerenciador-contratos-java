@@ -32,6 +32,7 @@ import { Numeros9Directive } from './shared/numeros-9.directive';
 import { ApenasLetrasDirective } from './shared/apenas-letras.directive'
 import { MatNativeDateModule } from '@angular/material/core';
 import {MAT_DATE_LOCALE} from '@angular/material/core';
+import { ContratoService } from './services/contrato.service';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import {MAT_DATE_LOCALE} from '@angular/material/core';
   providers: [
     CurrencyPipe,
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl() },
-    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+    ContratoService
   ],
   bootstrap: [AppComponent]
 })

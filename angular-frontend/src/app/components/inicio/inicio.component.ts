@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormatarMoedaBrl } from '../../services/formatar-moeda-brl.service';
+import { FormatarMoedaBrl } from '../../utils/formatar-moeda-brl.service';
 
 interface Contrato {
   CONTRATO: number;

@@ -7,27 +7,27 @@
   <table mat-table [dataSource]="dataSource" matSort>
 
     <!-- ID Column -->
-    <ng-container matColumnDef="CONTRATO">
+    <ng-container matColumnDef="contrato">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Contrato </th>
-      <td mat-cell *matCellDef="let row"> {{ row.CONTRATO }} </td>
+      <td mat-cell *matCellDef="let row"> {{ row.contrato }} </td>
     </ng-container>
 
     <!-- Name Column -->
-    <ng-container matColumnDef="NOME">
+    <ng-container matColumnDef="nome">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
-      <td mat-cell *matCellDef="let row"> {{ row.NOME }} </td>
+      <td mat-cell *matCellDef="let row"> {{ row.nome }} </td>
     </ng-container>
 
     <!-- Value Column -->
-    <ng-container matColumnDef="VALOR">
+    <ng-container matColumnDef="valor">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor </th>
-      <td mat-cell *matCellDef="let row"> {{ this.FormatarMoedaBrl.formatarParaValorMonetario(row.VALOR) }} </td>
+      <td mat-cell *matCellDef="let row"> {{ this.FormatarMoedaBrl.formatarParaValorMonetario(row.valor) }} </td>
     </ng-container>
 
     <!-- Date Column -->
-    <ng-container matColumnDef="DATA_DO_CONTRATO">
+    <ng-container matColumnDef="dataContrato">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Data do Contrato </th>
-      <td mat-cell *matCellDef="let row"> {{ row.DATA_DO_CONTRATO | date:'dd/MM/yyyy' }} </td>
+      <td mat-cell *matCellDef="let row"> {{ row.dataContrato | date:'dd/MM/yyyy' }} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -39,5 +39,5 @@
     </tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  <mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 50]" (page)="onPageChange($event)" aria-label="Select page of users"></mat-paginator>
 </div>
