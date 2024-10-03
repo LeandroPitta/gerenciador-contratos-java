@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 
 export class ValidacaoService {
     validarDados(
-        contrato: number | null,
+        contrato: string | null,
         nome: string,
         valorContrato: string,
         dataContrato: Date | null

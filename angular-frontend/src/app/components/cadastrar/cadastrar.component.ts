@@ -13,7 +13,7 @@ import { FormatarDataApiService } from 'src/app/utils/formatar-data-api.service'
 })
 
 export class CadastrarComponent {
-  contrato!: number;
+  contrato!: string;
   nome!: string;
   valorContrato!: string;
   dataContrato!: Date;
@@ -72,7 +72,7 @@ export class CadastrarComponent {
     }
   }
 
-  async verificarContratoExistente(contrato: number): Promise<boolean> {
+  async verificarContratoExistente(contrato: string): Promise<boolean> {
     const apiUrl = `http://localhost:8080/api/tabela.asp`;
 
     try {

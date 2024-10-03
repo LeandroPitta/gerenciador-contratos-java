@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ContratoService } from '../../services/contrato.service';
+import { Contrato } from '../../models/contrato';
 
 @Component({
   selector: 'app-pesquisar',
@@ -10,22 +11,28 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class PesquisarComponent {
   isLoading = false;
-  displayedColumns = ['CONTRATO', 'NOME', 'VALOR', 'DATA_DO_CONTRATO'];
-  dataSource: any[] = [];
-  contratoEncontrado: any = null;
+  contratoEncontrado: Contrato | null = null;
   numeroContrato: number | null = null;
 
-  constructor(private http: HttpClient, private router: Router, private snackBar: MatSnackBar) { }
-
+  constructor(
+    private contratoService: ContratoService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
   pesquisarContrato() {
-    const apiUrl = 'http://localhost:8080/api/tabela.asp';
+    if (this.numeroContrato === null) {
+      this.snackBar.open('Por favor, insira o número do contrato', 'Fechar', {
+        duration: 5000
+      });
+      return;
+    }
+
     this.isLoading = true;
 
-    this.http.get<any[]>(apiUrl).subscribe(data => {
-      this.dataSource = data;
+    this.contratoService.getContratoById(this.numeroContrato).subscribe(response => {
+      this.contratoEncontrado = response;
       this.isLoading = false;
-      this.contratoEncontrado = this.dataSource.find(c => c.CONTRATO == this.numeroContrato);
 
       if (this.contratoEncontrado) {
         this.router.navigate(['manutencao'], {
@@ -38,6 +45,12 @@ export class PesquisarComponent {
           duration: 5000
         });
       }
+    }, error => {
+      this.isLoading = false;
+      this.snackBar.open('Erro ao buscar contrato', 'Fechar', {
+        duration: 5000
+      });
+      console.error('Error fetching data:', error);
     });
   }
 }

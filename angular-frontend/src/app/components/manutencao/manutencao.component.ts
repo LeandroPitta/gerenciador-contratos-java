@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { FormatarMoedaBrl } from '../../utils/formatar-moeda-brl.service';
 import { ValidacaoService } from '../../utils/validacao.service';
 import { FormatarDataApiService } from 'src/app/utils/formatar-data-api.service';
+import { Contrato } from 'src/app/models/contrato';
 
 @Component({
   selector: 'app-manutencao',
@@ -14,11 +15,11 @@ import { FormatarDataApiService } from 'src/app/utils/formatar-data-api.service'
 
 export class ManutencaoComponent implements OnInit {
 
-  contrato!: number;
+  contrato!: string;
   nome!: string;
   valorContrato!: string;
   dataContrato!: Date;
-  contratoEncontrado: any = null;
+  contratoEncontrado: Contrato | null = null;
   maxDate: Date = new Date();
 
   constructor(
@@ -33,10 +34,10 @@ export class ManutencaoComponent implements OnInit {
   ngOnInit() {
     this.contratoEncontrado = history.state.contratoEncontrado;
     if (this.contratoEncontrado) {
-      this.contrato = this.contratoEncontrado.CONTRATO;
-      this.nome = this.contratoEncontrado.NOME;
-      this.valorContrato = this.FormatarMoedaBrl.formatarParaValorMonetario(this.contratoEncontrado.VALOR);
-      this.dataContrato = new Date(this.contratoEncontrado.DATA_DO_CONTRATO);
+      this.contrato = this.contratoEncontrado.contrato;
+      this.nome = this.contratoEncontrado.nome;
+      this.valorContrato = this.FormatarMoedaBrl.formatarParaValorMonetario(this.contratoEncontrado.valor);
+      this.dataContrato = new Date(this.contratoEncontrado.dataContrato);
       this.dataContrato.setMinutes(this.dataContrato.getMinutes() + this.dataContrato.getTimezoneOffset());
     }
   }

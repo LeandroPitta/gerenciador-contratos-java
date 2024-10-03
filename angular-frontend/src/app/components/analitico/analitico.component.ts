@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { ContratoService } from '../../services/contrato.service';
 import { FormatarMoedaBrl } from '../../utils/formatar-moeda-brl.service';
+import { Contrato } from '../../models/contrato';
 
 @Component({
   selector: 'app-analitico',
@@ -12,7 +13,7 @@ import { FormatarMoedaBrl } from '../../utils/formatar-moeda-brl.service';
 })
 export class AnaliticoComponent implements OnInit {
   displayedColumns: string[] = ['contrato', 'nome', 'valor', 'dataContrato'];
-  dataSource!: MatTableDataSource<any>;
+  dataSource!: MatTableDataSource<Contrato>;
   totalItems = 0;
   pageSize = 5;
   currentPage = 0;
