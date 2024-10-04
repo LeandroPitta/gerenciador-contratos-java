@@ -2,6 +2,7 @@ package br.com.leandropitta.gerenciador_contratos_java.service;
 
 import br.com.leandropitta.gerenciador_contratos_java.dto.request.AtualizaContratoRequestDto;
 import br.com.leandropitta.gerenciador_contratos_java.dto.request.CadastraContratoRequestDto;
+import br.com.leandropitta.gerenciador_contratos_java.dto.response.ContratoEstatisticasResponseDto;
 import br.com.leandropitta.gerenciador_contratos_java.dto.response.ContratoResponseDto;
 import br.com.leandropitta.gerenciador_contratos_java.dto.response.ContratoResponsePageDto;
 import br.com.leandropitta.gerenciador_contratos_java.dto.response.NumeroContratoResponseDto;
@@ -12,8 +13,10 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,7 +27,7 @@ public class ContratosService {
     private final ModelMapper modelMapper;
 
     public ContratoResponsePageDto consultarContratos(int page, int size) {
-        Page<Contrato> contratosPage = contratoRepository.findAll(PageRequest.of(page, size));
+        Page<Contrato> contratosPage = contratoRepository.findAll(PageRequest.of(page, size, Sort.by("contrato").ascending()));
         return ContratoResponsePageDto.builder()
                 .total(contratosPage.getTotalElements())
                 .totalPages(contratosPage.getTotalPages())
@@ -75,5 +78,12 @@ public class ContratosService {
 
         contratoExistente = contratoRepository.save(contratoExistente);
         return modelMapper.map(contratoExistente, ContratoResponseDto.class);
+    }
+
+    public ContratoEstatisticasResponseDto obterEstatisticasContratos() {
+        long quantidadeTotal = contratoRepository.countContratos();
+        BigDecimal mediaValor = contratoRepository.averageValorContratos();
+        BigDecimal valorTotal = contratoRepository.totalValorContratos();
+        return new ContratoEstatisticasResponseDto(quantidadeTotal, mediaValor, valorTotal);
     }
 }

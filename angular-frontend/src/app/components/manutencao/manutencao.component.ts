@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { ContratoService } from 'src/app/services/contrato.service';
 import { FormatarMoedaBrl } from '../../utils/formatar-moeda-brl.service';
 import { ValidacaoService } from '../../utils/validacao.service';
 import { FormatarDataApiService } from 'src/app/utils/formatar-data-api.service';
 import { Contrato } from 'src/app/models/contrato';
+import { ContratoUpdateRequest } from 'src/app/models/contrato-update-request';
 
 @Component({
   selector: 'app-manutencao',
@@ -24,7 +25,7 @@ export class ManutencaoComponent implements OnInit {
 
   constructor(
     public router: Router,
-    private http: HttpClient,
+    private contratoService: ContratoService,
     private snackBar: MatSnackBar,
     public FormatarMoedaBrl: FormatarMoedaBrl,
     private validacaoService: ValidacaoService,
@@ -55,19 +56,17 @@ export class ManutencaoComponent implements OnInit {
       });
       return; // Se os dados não forem válidos, exibir mensagem de erro e sair do método
     }
+
     const valorSemFormatacao = this.valorContrato.replace(/[^\d]/g, '');
-    const valorFloat = valorSemFormatacao.slice(0, -2) + '.' + valorSemFormatacao.slice(-2);
+    const valorFloat = parseFloat(valorSemFormatacao.slice(0, -2) + '.' + valorSemFormatacao.slice(-2));
 
-    const body = new HttpParams()
-      .set('CONTRATO', this.contrato.toString())
-      .set('NOME', this.nome)
-      .set('VALOR', valorFloat)
-      .set('DATA_DO_CONTRATO', this.FormatarDataApiService.formatarData(this.dataContrato));
+    const body: ContratoUpdateRequest = {
+      nome: this.nome,
+      valor: valorFloat,
+      dataContrato: this.FormatarDataApiService.formatarData(this.dataContrato)
+    };
 
-    const headers = new HttpHeaders()
-      .set('Content-Type', 'application/x-www-form-urlencoded');
-
-    this.http.post('http://localhost:8080/api/manutencao.asp', body.toString(), { headers }).subscribe(
+    this.contratoService.updateContrato(this.contrato, body).subscribe(
       (response: any) => {
         this.snackBar.open('Contrato ' + this.contrato + ' atualizado com sucesso', 'Fechar', {
           duration: 10000,
@@ -78,7 +77,9 @@ export class ManutencaoComponent implements OnInit {
       },
       (error: any) => {
         console.error('Erro ao atualizar contrato', error);
-        // Lógica de tratamento de erro, se necessário
+        this.snackBar.open('Erro ao atualizar contrato', 'Fechar', {
+          duration: 5000
+        });
       }
     );
   }

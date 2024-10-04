@@ -3,6 +3,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiResponse } from '../models/api-response';
 import { Contrato } from '../models/contrato';
+import { ContratoUpdateRequest } from '../models/contrato-update-request';
+import { Estatisticas } from '../models/estatisticas';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +22,21 @@ export class ContratoService {
 
   getContratoById(id: number): Observable<Contrato> {
     return this.http.get<Contrato>(`${this.apiUrl}/${id}`);
+  }
+
+  updateContrato(numeroContrato: string, body: ContratoUpdateRequest): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${numeroContrato}`, body);
+  }
+
+  gerarNumeroContrato(): Observable<{ numeroContrato: string }> {
+    return this.http.get<{ numeroContrato: string }>(`${this.apiUrl}/gerarNumeroContrato`);
+  }
+
+  cadastrarContrato(body: ContratoUpdateRequest): Observable<any> {
+    return this.http.post(this.apiUrl, body);
+  }
+
+  getEstatisticas(): Observable<Estatisticas> {
+    return this.http.get<Estatisticas>(`${this.apiUrl}/estatisticas`);
   }
 }

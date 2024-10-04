@@ -2,6 +2,7 @@ package br.com.leandropitta.gerenciador_contratos_java.controller;
 
 import br.com.leandropitta.gerenciador_contratos_java.dto.request.AtualizaContratoRequestDto;
 import br.com.leandropitta.gerenciador_contratos_java.dto.request.CadastraContratoRequestDto;
+import br.com.leandropitta.gerenciador_contratos_java.dto.response.ContratoEstatisticasResponseDto;
 import br.com.leandropitta.gerenciador_contratos_java.dto.response.ContratoResponseDto;
 import br.com.leandropitta.gerenciador_contratos_java.dto.response.ContratoResponsePageDto;
 import br.com.leandropitta.gerenciador_contratos_java.dto.response.NumeroContratoResponseDto;
@@ -47,5 +48,10 @@ public class ContratosController {
             @RequestBody AtualizaContratoRequestDto atualizaContratoRequestDto) {
         ContratoResponseDto responseDto = contratosService.atualizarContrato(numeroContrato, atualizaContratoRequestDto);
         return ResponseEntity.status(HttpStatus.OK).body(responseDto);
+    }
+
+    @GetMapping("/estatisticas")
+    public ContratoEstatisticasResponseDto obterEstatisticasContratos() {
+        return contratosService.obterEstatisticasContratos();
     }
 }

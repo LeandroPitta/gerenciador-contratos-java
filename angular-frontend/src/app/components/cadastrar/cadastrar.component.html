@@ -2,7 +2,7 @@
   <p>
     <mat-form-field id="contrato">
       <mat-label>Contrato</mat-label>
-      <input matInput required [(ngModel)]="contrato" name="contrato" minlength="9" maxlength="9" appNumeros9>
+      <input matInput required [(ngModel)]="contrato" name="contrato" [disabled]="true">
     </mat-form-field>
 
     <mat-form-field id="nome">

@@ -1,13 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ContratoService } from 'src/app/services/contrato.service';
 import { FormatarMoedaBrl } from '../../utils/formatar-moeda-brl.service';
-
-interface Contrato {
-  CONTRATO: number;
-  NOME: string;
-  VALOR: number;
-  DATA_DO_CONTRATO: string;
-}
 
 @Component({
   selector: 'app-inicio',
@@ -22,7 +15,7 @@ export class InicioComponent implements OnInit {
   mediaContratos: number = 0;
 
   constructor(
-    private http: HttpClient,
+    private contratoService: ContratoService,
     public FormatarMoedaBrl: FormatarMoedaBrl
   ) { }
 
@@ -31,11 +24,15 @@ export class InicioComponent implements OnInit {
   }
 
   fetchData() {
-    this.http.get<Contrato[]>('http://localhost:8080/api/tabela.asp').subscribe(data => {
-      this.totalContratos = data.length;
-      this.valorTotal = data.map(contrato => contrato.VALOR).reduce((total, valor) => total + valor, 0);
-      this.mediaContratos = this.valorTotal / this.totalContratos;
-    });
+    this.contratoService.getEstatisticas().subscribe(
+      data => {
+        this.totalContratos = data.quantidadeTotal;
+        this.valorTotal = data.valorTotal;
+        this.mediaContratos = data.mediaValor;
+      },
+      error => {
+        console.error('Erro ao buscar estatísticas', error);
+      }
+    );
   }
-
 }
