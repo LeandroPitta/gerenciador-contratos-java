@@ -70,7 +70,7 @@ The application uses PostgreSQL as the database management system. It stores all
 
 ### Frontend
 1. **Install Dependencies**: 
-   - Navigate to the  directory and run:
+   Navigate to the root/angular-frontend directory and run:
      ```bash
      npm install
      ```
