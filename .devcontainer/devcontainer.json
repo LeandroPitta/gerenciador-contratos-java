@@ -1,0 +1,15 @@
+{
+  "name": "Ubuntu + Java + Maven + Node + Angular",
+  "dockerFile": "Dockerfile",
+  "appPort": [8080, 4200],
+  "forwardPorts": [8080, 4200],
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "bash"
+  },
+  "postCreateCommand": "node --version && ng version && mvn --version",
+  "extensions": [
+    "vscjava.vscode-java-pack",
+    "ms-azuretools.vscode-docker",
+    "angular.ng-template"
+  ]
+}
