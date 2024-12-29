@@ -11,7 +11,7 @@ import { Estatisticas } from '../models/estatisticas';
 })
 export class ContratoService {
 
-  private apiUrl = 'http://127.0.0.1:8080/gerenciador-contratos-java-0.0.1-SNAPSHOT/contratos';
+  private apiUrl = 'http://127.0.0.1:8080/contratos';
 
   constructor(private http: HttpClient) {}
 
