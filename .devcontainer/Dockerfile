@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
     software-properties-common \
     unzip \
     git \
+    openssh-server \
     && rm -rf /var/lib/apt/lists/*
 
 # Install JDK 17
@@ -28,7 +29,11 @@ RUN npm install -g @angular/cli@16
 ENV JAVA_HOME /usr/lib/jvm/java-17-openjdk-amd64
 ENV PATH $JAVA_HOME/bin:$PATH
 
-# Create a user to avoid running as root
-RUN useradd -ms /bin/bash devuser
-USER devuser
-WORKDIR /home/devuser/app
+# Configure SSH
+RUN mkdir /var/run/sshd \
+    && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
+    && sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config \
+    && echo 'root:1234' | chpasswd  # Set root password to 1234
+
+# Start SSH when the container is run
+CMD ["/usr/sbin/sshd", "-D"]
