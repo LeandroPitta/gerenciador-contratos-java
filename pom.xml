@@ -11,7 +11,7 @@
     <groupId>br.com.leandropitta</groupId>
     <artifactId>gerenciador-contratos-java</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>gerenciador-contratos-java</name>
     <description>Gerenciador de Contratos</description>
     <url/>
