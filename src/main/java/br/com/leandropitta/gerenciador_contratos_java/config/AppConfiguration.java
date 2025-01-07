@@ -20,7 +20,7 @@ public class AppConfiguration {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:4200") // Substitua pelo URL do seu frontend
+                        .allowedOrigins("http://localhost:4200", "https://contratos.leandropitta.com.br") // Substitua pelo URL do seu frontend
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
