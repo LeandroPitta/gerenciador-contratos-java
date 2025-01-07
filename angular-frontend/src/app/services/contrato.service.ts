@@ -7,16 +7,19 @@ import { ContratoUpdateRequest } from '../models/contrato-update-request';
 import { Estatisticas } from '../models/estatisticas';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ContratoService {
-
-  private apiUrl = 'http://127.0.0.1:8080/contratos';
+  //in development, comment one and uncomment the other
+  //private apiUrl = 'http://127.0.0.1:8080/contratos'; //in development
+  private apiUrl = `${window.location.origin}/contratos`; //in production
 
   constructor(private http: HttpClient) {}
 
   getContratos(page: number, size: number): Observable<ApiResponse> {
-    let params = new HttpParams().set('page', page.toString()).set('size', size.toString());
+    let params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
     return this.http.get<ApiResponse>(this.apiUrl, { params });
   }
 
@@ -24,12 +27,17 @@ export class ContratoService {
     return this.http.get<Contrato>(`${this.apiUrl}/${id}`);
   }
 
-  updateContrato(numeroContrato: string, body: ContratoUpdateRequest): Observable<any> {
+  updateContrato(
+    numeroContrato: string,
+    body: ContratoUpdateRequest
+  ): Observable<any> {
     return this.http.put(`${this.apiUrl}/${numeroContrato}`, body);
   }
 
   gerarNumeroContrato(): Observable<{ numeroContrato: string }> {
-    return this.http.get<{ numeroContrato: string }>(`${this.apiUrl}/gerarNumeroContrato`);
+    return this.http.get<{ numeroContrato: string }>(
+      `${this.apiUrl}/gerarNumeroContrato`
+    );
   }
 
   cadastrarContrato(body: ContratoUpdateRequest): Observable<any> {
